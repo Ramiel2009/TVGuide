@@ -24,10 +24,10 @@ import org.jsoup.nodes.Document;
 
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, View.OnClickListener {
 
 
-    static ProgressDialog pd; // Loading dialog
+    protected ProgressDialog pd; // Loading dialog
     static TextView tvd;
     String Url = "http://ru.viasat.ua/contents";
     public static int i; // titles counter
@@ -45,7 +45,6 @@ public class MainActivity extends ActionBarActivity
     private CharSequence myTitle;// used to store app title
     private String[] viewsNames;
     public static boolean flagRefreshed=false;
-
 
 
     /**
@@ -66,57 +65,35 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
+        Button btn = (Button) findViewById(R.id.btnRefresh);
+
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+        Fragment objFragment = null;
+        objFragment = new Content_fragment();
 
-        flagRefreshed=false;
-        if(flagRefreshed==false) {
-            Context dRequest = new Context();
-            dRequest.execute();
-
-        }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container,  new Content_fragment())
+                .commit();
     }
-
-
-
-
-
-
-    //ASYNCTASK!
-    public class Context extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        public void onPreExecute() {
-            pd = new ProgressDialog(MainActivity.this);
-            pd.setTitle("Getting Data");
-            pd.setMessage("Loading...");
-            pd.show();
-        }
-
-        public Void doInBackground(Void... params) {
-            try {
-                Parser.refrshItems();
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        public void onPostExecute(Void result) {
-            pd.dismiss();
-            Toast.makeText (ua.viasat.tvguide.MainActivity.this
-                    , "TEST111", Toast.LENGTH_LONG).show();
-           // TVCreator();
-        }
-    }
-///
 
     @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnRefresh:
+                Toast.makeText(this, "Test", Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+
+
+
+            @Override
     public void onNavigationDrawerItemSelected(int position) {
 
         Fragment objFragment = null;
@@ -194,7 +171,7 @@ public class MainActivity extends ActionBarActivity
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
+    public static class PlaceholderFragment extends Fragment{
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -219,10 +196,7 @@ public class MainActivity extends ActionBarActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            Button btn = (Button)rootView.findViewById(R.id.btnRefresh);
-            btn.setOnClickListener((View.OnClickListener) this);
-            btn.setText("AAAAA");
+            View rootView = inflater.inflate(R.layout.content_layout, container, false);
             return rootView;
         }
 
@@ -235,5 +209,9 @@ public class MainActivity extends ActionBarActivity
             ((MainActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
+
+
+
+
+        }
     }
-}
