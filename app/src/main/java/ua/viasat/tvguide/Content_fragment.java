@@ -2,6 +2,7 @@ package ua.viasat.tvguide;
 
 import android.app.ProgressDialog;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
@@ -13,9 +14,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-/**
- * Created by mmaloshtan on 23.12.2014.
- */
+
 public class Content_fragment extends Fragment implements View.OnClickListener {
     View rootView;
     static boolean  flagRefreshed;
@@ -30,11 +29,11 @@ public class Content_fragment extends Fragment implements View.OnClickListener {
 
 
             if(flagRefreshed==false){
-                BackgroundWorker dRequest = new BackgroundWorker(rootView);
+                BackgroundWorker dRequest = new BackgroundWorker(this);
                 dRequest.execute();
                 flagRefreshed=true;
-            }
-            TVCreator();
+        }
+
         return rootView;
     }
 
@@ -50,7 +49,7 @@ public class Content_fragment extends Fragment implements View.OnClickListener {
     }
 
 
-    public void TVCreator() {
+   public void TVCreator() {
 System.out.println("tvCreator from 1 to "+Parser.title.size());
         int a;
         for (a = 1; a < Parser.title.size(); a++) {
@@ -61,7 +60,7 @@ System.out.println("tvCreator from 1 to "+Parser.title.size());
             TextView tvd = new TextView(rootView.getContext());
             final int b = a;
             tvd.setId(b);
-            tvd.setOnClickListener(this);
+         //   tvd.setOnClickListener(this);
             params.addRule(RelativeLayout.BELOW, a - 1);
             rl.addView(tvd, params);
 
@@ -72,7 +71,6 @@ System.out.println("tvCreator from 1 to "+Parser.title.size());
                     + Parser.channel.get(a - 1) + "</font>" + "<br>"));
         }
         System.out.println("tvCreator from 1 to "+a+"finished");
-
     }
 }
 

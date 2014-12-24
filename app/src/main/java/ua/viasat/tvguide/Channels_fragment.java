@@ -8,11 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-
-/**
- * Created by mmaloshtan on 23.12.2014.
- */
-public class Channels_fragment extends Fragment implements View.OnClickListener {
+public class Channels_fragment extends Fragment {
     View rootView;
 
     Button btn;
@@ -20,18 +16,6 @@ public class Channels_fragment extends Fragment implements View.OnClickListener 
     public View onCreateView (LayoutInflater inflater, ViewGroup container,
                               Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.channels_layout, container, false);
-       // Button btn = (Button)findViewById(R.id.btnRefresh);
-        //btn.setOnClickListener(this);
         return rootView;
-
-
-
-    }
-
-
-
-    @Override
-    public void onClick (View v){
-
     }
 }
