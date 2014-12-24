@@ -28,8 +28,9 @@ public class Content_fragment extends Fragment implements View.OnClickListener {
         Button btn = (Button) rootView.findViewById(R.id.btnRefresh);
         btn.setOnClickListener(this);
 
-            BackgroundWorker dRequest = new BackgroundWorker(rootView);
+
             if(flagRefreshed==false){
+                BackgroundWorker dRequest = new BackgroundWorker(rootView);
                 dRequest.execute();
                 flagRefreshed=true;
             }
@@ -50,8 +51,9 @@ public class Content_fragment extends Fragment implements View.OnClickListener {
 
 
     public void TVCreator() {
-
-        for (int a = 1; a < Parser.title.size(); a++) {
+System.out.println("tvCreator from 1 to "+Parser.title.size());
+        int a;
+        for (a = 1; a < Parser.title.size(); a++) {
             RelativeLayout rl = (RelativeLayout) rootView.findViewById(R.id.rl);
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -69,6 +71,7 @@ public class Content_fragment extends Fragment implements View.OnClickListener {
                     + Parser.time.get(a - 1) + "   " + "<font color=\"grey\">"
                     + Parser.channel.get(a - 1) + "</font>" + "<br>"));
         }
+        System.out.println("tvCreator from 1 to "+a+"finished");
 
     }
 }
