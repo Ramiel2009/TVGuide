@@ -18,8 +18,6 @@ import android.widget.TextView;
  */
 public class Content_fragment extends Fragment implements View.OnClickListener {
     View rootView;
-    public ProgressDialog pd;
-    TextView tv1;
     static boolean  flagRefreshed;
 
     @Override
@@ -36,9 +34,6 @@ public class Content_fragment extends Fragment implements View.OnClickListener {
                 flagRefreshed=true;
             }
             TVCreator();
-
-
-
         return rootView;
     }
 
