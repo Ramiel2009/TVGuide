@@ -20,7 +20,7 @@ public class Content_fragment extends Fragment implements View.OnClickListener {
     View rootView;
     public ProgressDialog pd;
     TextView tv1;
-    static boolean  flagRefreshed=false;
+    static boolean  flagRefreshed;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,12 +30,11 @@ public class Content_fragment extends Fragment implements View.OnClickListener {
         Button btn = (Button) rootView.findViewById(R.id.btnRefresh);
         btn.setOnClickListener(this);
 
-
-
-
             BackgroundWorker dRequest = new BackgroundWorker(rootView);
-
-            dRequest.execute();
+            if(flagRefreshed==false){
+                dRequest.execute();
+                flagRefreshed=true;
+            }
             TVCreator();
 
 

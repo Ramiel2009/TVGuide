@@ -31,19 +31,23 @@ import java.util.ArrayList;
             res.add("http://ru.viasat.ua" + imageLink);
             return res;
         }
-        public static void refrshItems() throws IOException {
+        public static void refreshItems() throws IOException {
+            time.clear();
+            channel.clear();
+            title.clear();
+            id.clear();
+
             String url = "http://ru.viasat.ua/contents";
             Document doc = Jsoup.connect(url).timeout(60000).get();
             Elements titles = doc.select(".data");
-
+            System.out.println(titles.size());
             for (Element e : titles) {
                 time.add(e.getElementsByClass("time").text());
                 channel.add(e.getElementsByClass("channel").text());
                 title.add(e.getElementsByClass("title").text());
-                id.add(e.getElementsByClass("title").get(0).attr("href")
-                        .replaceAll("/contents/", ""));
-                System.out.println(e.getElementsByClass("title").get(0).attr("href")
-                        .replaceAll("/contents/", ""));
+                id.add(e.getElementsByClass("title").get(0).attr("href").replaceAll("/contents/", ""));
             }
+            //System.out.println(doc.select(".data").select(".title"));
+            System.out.println(id);
         }
     }
