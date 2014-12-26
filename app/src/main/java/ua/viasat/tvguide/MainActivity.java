@@ -17,8 +17,8 @@ public class MainActivity extends ActionBarActivity
 
         NavigationDrawerFragment mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+
         mTitle = getTitle();
-        // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
@@ -28,21 +28,19 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
        Fragment objFragment = new Content_fragment();
-        switch (position) {
-            case 0:
-                objFragment = new Content_fragment();
-                break;
-            case 1:
-                objFragment = new Channels_fragment();
-                break;
-            case 2:
-                objFragment = new Grid_fragment();
-                break;
+            switch (position) {
+                case 0:
+                    objFragment = new Content_fragment();
+                    Content_fragment.flagRefreshing = false;
+                    break;
+                case 1:
+                    objFragment = new Channels_fragment();
+                    break;
+                case 2:
+                    objFragment = new Grid_fragment();
+                    break;
         }
-
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, objFragment)
-                .commit();
+        fragmentManager.beginTransaction().replace(R.id.container, objFragment).commit();
     }
 }

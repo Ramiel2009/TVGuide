@@ -1,79 +1,83 @@
 package ua.viasat.tvguide;
 
-import android.app.ProgressDialog;
-import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 
-public class Content_fragment extends Fragment implements View.OnClickListener {
+public class Content_fragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+
     View rootView;
     static boolean  flagRefreshed;
+    static boolean  flagRefreshing;
+    private SwipeRefreshLayout swipeLayout;
+    public int a = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.content_layout, container, false);
-
-        Button btn = (Button) rootView.findViewById(R.id.btnRefresh);
-        btn.setOnClickListener(this);
+        TVCreator();
+        ScrollView sw = (ScrollView) rootView.findViewById(R.id.scrollView1);
+        System.out.println(sw.getMaxScrollAmount());
 
 
             if(flagRefreshed==false){
-                BackgroundWorker dRequest = new BackgroundWorker(this);
+                BackgroundWorker dRequest = new BackgroundWorker(rootView);
                 dRequest.execute();
                 flagRefreshed=true;
         }
-
-        return rootView;
+            swipeLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
+            swipeLayout.setOnRefreshListener(this);
+            return rootView;
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnRefresh:
-                flagRefreshed=false;
-                BackgroundWorker at = new BackgroundWorker(rootView);
-                at.execute();
-                break;
-        }
+    public void onRefresh() {
+        TVCreator();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                swipeLayout.setRefreshing(false);
+            }
+        }, 1000);
     }
-
 
    public void TVCreator() {
-System.out.println("tvCreator from 1 to "+Parser.title.size());
-        int a;
-        for (a = 1; a < Parser.title.size(); a++) {
-            RelativeLayout rl = (RelativeLayout) rootView.findViewById(R.id.rl);
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-            TextView tvd = new TextView(rootView.getContext());
-            final int b = a;
-            tvd.setId(b);
-         //   tvd.setOnClickListener(this);
-            params.addRule(RelativeLayout.BELOW, a - 1);
-            rl.addView(tvd, params);
+
+       System.out.println("tvCreator from 1 to " + Parser.title.size());
+        if ( flagRefreshing == false ){
+           for (a = 1; a < Parser.title.size(); a++) {
+
+               RelativeLayout rl = (RelativeLayout) rootView.findViewById(R.id.rl);
+               RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                       ViewGroup.LayoutParams.WRAP_CONTENT,
+                       ViewGroup.LayoutParams.WRAP_CONTENT);
 
 
-            tvd.setText("");
-            tvd.setText(Html.fromHtml("<b>" + a + ". " + Parser.title.get(a - 1) + "</b>" + "<br>"
-                    + Parser.time.get(a - 1) + "   " + "<font color=\"grey\">"
-                    + Parser.channel.get(a - 1) + "</font>" + "<br>"));
-        }
-        System.out.println("tvCreator from 1 to "+a+"finished");
-    }
+
+               TextView tvd = new TextView(rootView.getContext());
+               final int b = a;
+               tvd.setId(b);
+               params.addRule(RelativeLayout.BELOW, a - 1);
+               rl.addView(tvd, params);
+               tvd.setText("");
+               tvd.setText(Html.fromHtml("<b>" + a + ". " + Parser.title.get(a - 1) + "</b>" + "<br>"
+                       + Parser.time.get(a - 1) + "   " + "<font color=\"grey\">"
+                       + Parser.channel.get(a - 1) + "</font>" + "<br>"));
+            flagRefreshing = true;
+           }
+           System.out.println("tvCreator from 1 to " + a + " finished");
+       }
+   }
 }
-
-
 
 
