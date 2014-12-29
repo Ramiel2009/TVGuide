@@ -39,7 +39,7 @@ public class TitleFragment extends Fragment {
         TextView tv  = new TextView(rootView.getContext());
 
         int SDK_INT = android.os.Build.VERSION.SDK_INT;
-        if (SDK_INT > 8) {
+
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                     .permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -65,7 +65,7 @@ public class TitleFragment extends Fragment {
 
 
                     lroot.addView(tv);
-        }
+
         return rootView;
     }
 }
