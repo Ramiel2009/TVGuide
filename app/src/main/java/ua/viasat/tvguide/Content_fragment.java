@@ -3,6 +3,7 @@ package ua.viasat.tvguide;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -13,7 +14,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 
-public class Content_fragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+public class Content_fragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener{
 
     View rootView;
     static boolean  flagRefreshed;
@@ -65,6 +66,7 @@ public class Content_fragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
                TextView tvd = new TextView(rootView.getContext());
+               tvd.setOnClickListener(this);
                final int b = a;
                tvd.setId(b);
                params.addRule(RelativeLayout.BELOW, a - 1);
@@ -78,6 +80,16 @@ public class Content_fragment extends Fragment implements SwipeRefreshLayout.OnR
            System.out.println("tvCreator from 1 to " + a + " finished");
        }
    }
+
+    @Override
+    public void onClick(View v) {
+       System.out.println(v.getId());
+        TitleFragment nextFrag= new TitleFragment();
+        this.getFragmentManager().beginTransaction()
+                .replace(R.id.content_frame_container, nextFrag)
+                .addToBackStack(null)
+                .commit();
+    }
 }
 
 
