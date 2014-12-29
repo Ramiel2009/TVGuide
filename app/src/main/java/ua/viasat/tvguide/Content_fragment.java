@@ -84,9 +84,9 @@ public class Content_fragment extends Fragment implements SwipeRefreshLayout.OnR
     @Override
     public void onClick(View v) {
        System.out.println(v.getId());
-        TitleFragment nextFrag= new TitleFragment();
+        TitleFragment title= new TitleFragment();
         this.getFragmentManager().beginTransaction()
-                .replace(R.id.content_frame_container, nextFrag)
+                .replace(R.id.scrollView1, title)
                 .addToBackStack(null)
                 .commit();
     }
