@@ -10,8 +10,9 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+    import java.util.List;
 
-    public class Parser {
+public class Parser {
         public static ArrayList<String> id = new ArrayList<String>();
         public static ArrayList<String> time = new ArrayList<String>();
         public static ArrayList<String> channel = new ArrayList<String>();
@@ -21,7 +22,7 @@ import java.util.ArrayList;
         public static ArrayList getItemInfo(String id) throws IOException {
             String url = "http://ru.viasat.ua/contents/" + id;
             Document doc = Jsoup.connect(url).timeout(60000).get();
-            System.out.println(doc);
+            //System.out.println(doc);
             Elements item = doc.select(".film-text");
             String imageLink = doc.select(".l-film-ill").get(0)
                     .getElementsByTag("img").get(0).attributes().get("src");
@@ -40,7 +41,7 @@ import java.util.ArrayList;
             String url = "http://ru.viasat.ua/contents";
             Document doc = Jsoup.connect(url).timeout(60000).get();
             Elements titles = doc.select(".data");
-            System.out.println(titles.size());
+          //  System.out.println(titles.size());
             for (Element e : titles) {
                 time.add(e.getElementsByClass("time").text());
                 channel.add(e.getElementsByClass("channel").text());

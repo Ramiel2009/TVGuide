@@ -13,6 +13,8 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import java.io.IOException;
+
 
 public class Content_fragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener{
 
@@ -83,10 +85,11 @@ public class Content_fragment extends Fragment implements SwipeRefreshLayout.OnR
 
     @Override
     public void onClick(View v) {
-        System.out.println(v.getId());
-        Fragment title= new TitleFragment();
+        System.out.println(Parser.id.get(v.getId()));
+        Fragment title= null;
+        title = new TitleFragment(Parser.id.get(v.getId()-1));
         FragmentManager fm = Content_fragment.this.getActivity().getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.container, title).commit();
+        fm.beginTransaction().replace(R.id.container, title).addToBackStack("Content").commit();
 
     }
 }

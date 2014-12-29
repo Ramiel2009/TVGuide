@@ -10,11 +10,14 @@ import java.io.IOException;
 public class BackgroundWorker extends AsyncTask<Void, Void, Void> {
     private ProgressDialog pd;
     private View contentFragment;
+    private String id  = null;
 
     public BackgroundWorker(View activity) {
         contentFragment = activity;
         pd = new ProgressDialog(contentFragment.getContext());
     }
+
+
 
     @Override
     public void onPreExecute() {
