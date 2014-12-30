@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -29,17 +28,11 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
     private static final String LOG_TAG = null;
     private Activity v;
     private Uri url;
-    private String CacheControl;
-    private String ExpiresDate;
-    private String LastModifiedDate;
     private Bitmap finalBmp;
     private ImageView iv;
 
-
     public ImageDownloader() {
-
     }
-
 
     public ImageDownloader(Activity v, String url, ImageView iv) {
         this.v = v;
@@ -47,15 +40,13 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
         this.iv = iv;
     }
 
-
-
     @Override
     protected Bitmap doInBackground(String... urls) {
-       try{
-        finalBmp = putBitmapInDiskCache(url);}
-       catch (Exception e ){
-           e.printStackTrace();
-       }
+        try {
+            finalBmp = putBitmapInDiskCache(url);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -69,7 +60,6 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
         });
     }
 
-
     public Bitmap DownloadImageFromPath(String path) {
 
         InputStream in = null;
@@ -80,7 +70,6 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setDoInput(true);
             con.connect();
-
             //download info for catch
          /*   Map<String, List<String>> map = con.getHeaderFields();
             CacheControl = map.get("Cache-Control").toString();
@@ -91,7 +80,6 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
            */
 
             responseCode = con.getResponseCode();
-
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 //download
                 in = con.getInputStream();
@@ -100,18 +88,12 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
                 finalBmp = bmp;
             }
 
-        } catch (UnknownHostException e) {
-
-
+        } catch (Exception ex) {
             Toast toast = Toast.makeText(v.getBaseContext(), "Connection failed...", Toast.LENGTH_LONG);
             toast.show();
-            //  Log.e("Exception", e.toString());
-        } catch (Exception ex) {
-            Log.e("Exception", ex.toString());
         }
         return finalBmp;
     }
-
 
     /**
      * Write bitmap associated with a url to disk cache
@@ -124,14 +106,13 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
         ArrayList<String> fileNames = getFileNames(GetFiles(cacheDir.toString()));
         System.out.println(Arrays.toString(fileNames.toArray()));
         System.out.println(cacheDir.toString() + url.hashCode());
-        if(fileNames.size()==0){
+        if (fileNames.size() == 0) {
             try {
                 cacheDir.mkdir();
                 cacheFile.createNewFile();
                 FileOutputStream fos = new FileOutputStream(cacheFile);
                 fos.flush();
                 fos.close();
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -160,7 +141,6 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
         Bitmap bmp = BitmapFactory.decodeStream(fis);
         return bmp;
     }
-
     //смотрим имена файла в каталоге кеша
     public File[] GetFiles(String DirectoryPath) {
         File f = new File(DirectoryPath);
@@ -171,10 +151,7 @@ public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
 
     public ArrayList<String> getFileNames(File[] file) {
         ArrayList<String> arrayFiles = new ArrayList<String>();
-        if (file.length == 0)
-            return null;
-        else {
-            for (int i = 0; i < file.length; i++)
+        for (int i = 0; i < file.length; i++) {
             arrayFiles.add(file[i].getName());
         }
         return arrayFiles;

@@ -3,6 +3,7 @@ package ua.viasat.tvguide;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.text.Html;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.io.IOException;
@@ -52,7 +53,7 @@ public class ATgetItemInfo extends AsyncTask<String, Void, Bitmap> {
             v.runOnUiThread(new Runnable() {
                 public void run() {
                     TextView  tv = (TextView) v.findViewById(R.id.TitleTextView1);
-                    tv.setText(itemInfo.get(0).toString());
+                    tv.setText(Html.fromHtml("<b>"+itemInfo.get(0).toString()+"</b>"));
                 }
             });
 

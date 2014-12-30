@@ -2,18 +2,21 @@ package ua.viasat.tvguide;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
-import android.widget.Toast;
 
 import java.io.IOException;
 
 public class BackgroundWorker extends AsyncTask<Void, Void, Void> {
     private ProgressDialog pd;
+    FragmentManager fm;
     private View contentFragment;
     private String id  = null;
 
-    public BackgroundWorker(View activity) {
-        contentFragment = activity;
+    public BackgroundWorker(View contentFragment,  FragmentManager fm) {
+        this.contentFragment = contentFragment;
+        this.fm = fm;
         pd = new ProgressDialog(contentFragment.getContext());
     }
 
@@ -39,8 +42,9 @@ public class BackgroundWorker extends AsyncTask<Void, Void, Void> {
     @Override
     public void onPostExecute(Void result) {
         pd.dismiss();
-
-        Toast.makeText(contentFragment.getContext(), "TEST111", Toast.LENGTH_LONG).show();
+        //Toast.makeText(contentFragment.getContext(), "TEST111", Toast.LENGTH_LONG).show();
+        Fragment objFragment = new Content_fragment();
+        fm.beginTransaction().replace(R.id.container, objFragment).addToBackStack("Content").commit();
         // TVCreator();
     }
 }
