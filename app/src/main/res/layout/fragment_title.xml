@@ -2,7 +2,29 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context="ua.viasat.tvguide.TitleFragment"
     android:focusableInTouchMode="false"
-    android:id="@+id/fragmentLinearLayout">
+    android:id="@+id/fragmentLinearLayout"
+    android:orientation="vertical"
+    android:gravity="center|right"
+    android:background="@color/material_blue_grey_950"
+    android:textAlignment="gravity">
 
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TitleImageView1"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/TitleTextView1"
+        android:layout_gravity="center_horizontal"
+        android:gravity="left|right"
+        android:paddingEnd="0.1dp"
+        android:singleLine="false"
+        android:textColor="#fffbf4ff"
+        android:textSize="@dimen/pd14" />
 
 </LinearLayout>

@@ -21,6 +21,7 @@ public class Parser {
 
         public static ArrayList getItemInfo(String id) throws IOException {
             String url = "http://ru.viasat.ua/contents/" + id;
+
             Document doc = Jsoup.connect(url).timeout(60000).get();
             //System.out.println(doc);
             Elements item = doc.select(".film-text");
@@ -30,6 +31,7 @@ public class Parser {
             ArrayList res = new ArrayList();
             res.add(item.text().trim());
             res.add("http://ru.viasat.ua" + imageLink);
+            System.out.println("http://ru.viasat.ua" + imageLink);
             return res;
         }
         public static void refreshItems() throws IOException {
