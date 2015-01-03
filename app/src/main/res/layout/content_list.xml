@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- the parent view - provides the gray listfragment background color -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:padding="5dp" >
+
+    <!-- the innner view - provides the white rectangle -->
+    <RelativeLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <!-- the icon view -->
+        <ImageView android:id="@+id/ivIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:layout_alignParentLeft="true" />
+
+        <!-- the container view for the title and description -->
+        <RelativeLayout android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ivIcon"
+            android:layout_centerVertical="true" >
+
+            <!-- the title view -->
+            <TextView android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textAppearance="@android:style/TextAppearance.Medium" />
+
+            <!-- the description view -->
+            <TextView android:id="@+id/tvTime"
+            android:layout_below="@id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+                android:text="time"
+            android:textAppearance="@android:style/TextAppearance.Small" />
+
+            <TextView android:id="@+id/tvChannel"
+                android:layout_toRightOf="@id/tvTime"
+                android:layout_below="@id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="channel"
+                android:textAppearance="@android:style/TextAppearance.Small"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

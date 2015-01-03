@@ -18,6 +18,7 @@ public class ATgetItemInfo extends AsyncTask<String, Void, Bitmap> {
         private Activity v;
         private String id;
         private ArrayList<String> itemInfo;
+
         private TextView  tv;
         private ImageView iv;
 
@@ -52,8 +53,9 @@ public class ATgetItemInfo extends AsyncTask<String, Void, Bitmap> {
             imDownloader.execute();
             v.runOnUiThread(new Runnable() {
                 public void run() {
+
                     TextView  tv = (TextView) v.findViewById(R.id.TitleTextView1);
-                    tv.setText(Html.fromHtml("<b>"+itemInfo.get(0).toString()+"</b>"));
+                    tv.setText(Html.fromHtml(itemInfo.get(0).toString()));
                 }
             });
 
