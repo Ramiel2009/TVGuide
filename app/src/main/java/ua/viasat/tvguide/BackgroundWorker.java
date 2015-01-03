@@ -42,9 +42,7 @@ public class BackgroundWorker extends AsyncTask<Void, Void, Void> {
     @Override
     public void onPostExecute(Void result) {
         pd.dismiss();
-        //Toast.makeText(contentFragment.getContext(), "TEST111", Toast.LENGTH_LONG).show();
         Fragment objFragment = new Content_fragment();
         fm.beginTransaction().replace(R.id.container, objFragment).addToBackStack("Content").commit();
-        // TVCreator();
     }
 }

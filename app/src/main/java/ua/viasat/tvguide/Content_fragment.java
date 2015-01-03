@@ -13,10 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
-import java.io.IOException;
 
 
 public class Content_fragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener{
@@ -59,9 +57,12 @@ public class Content_fragment extends Fragment implements SwipeRefreshLayout.OnR
         }, 1000);
     }
 
+
+
+
    public void TVCreator() {
        GradientDrawable gd = new GradientDrawable();
-       gd.setColor(Color.WHITE); // Changes this drawbale to use a single color instead of a gradient
+       gd.setColor(Color.WHITE);
        gd.setCornerRadius(10);
        gd.setStroke(1, 0xFF000000);
        System.out.println("tvCreator from 1 to " + Parser.title.size());
@@ -73,7 +74,6 @@ public class Content_fragment extends Fragment implements SwipeRefreshLayout.OnR
                        ViewGroup.LayoutParams.MATCH_PARENT,
                        ViewGroup.LayoutParams.WRAP_CONTENT);
 
-             //  RelativeLayout.LayoutParams lrelLayoutParam = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
                TextView tvd = new TextView(rootView.getContext());
                tvd.setBackgroundDrawable(gd);
                tvd.setOnClickListener(this);
