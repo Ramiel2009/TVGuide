@@ -29,15 +29,13 @@ public class Content_fragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.content_layout, container, false);
         final ListView lvMain1 = (ListView) rootView.findViewById(R.id.listView1);
-        FragmentManager fm = Content_fragment.this.getActivity().getSupportFragmentManager();
+        final FragmentManager fm = Content_fragment.this.getActivity().getSupportFragmentManager();
 
             if(flagRefreshed==false){
                 BackgroundWorker dRequest = new BackgroundWorker(rootView, fm);
                 dRequest.execute();
                 setFlagRefreshed(true);
         }
-
-
         mItems = new ArrayList<>();
         Resources resources = getResources();
         for (int a = 0; a < Parser.title.size(); a++) {
@@ -68,6 +66,8 @@ public class Content_fragment extends Fragment {
                 refreshLayout.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        BackgroundWorker dRequest = new BackgroundWorker(rootView, fm);
+                        dRequest.execute();
                         Toast.makeText(rootView.getContext(), "Refreshed", Toast.LENGTH_LONG).show();
                         refreshLayout.setRefreshing(false);
                     }
@@ -91,5 +91,3 @@ public class Content_fragment extends Fragment {
         flagRefreshed = b;
     }
 }
-
-
