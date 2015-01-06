@@ -23,7 +23,7 @@ public class Channels_fragment extends Fragment {
 
         String[] names = {"TV1000", "TV1000 Русское Кино", "TV1000 Action", "TV1000 Premium HD",
                 "TV1000 Megahit HD", "Viasat History", "Viasat Explore", "Viasat Nature", "Viasat History",
-                "Viasat Nature / History HD", "Viasat Sport", "Discovery Channel", "Discovery Showacase HD",
+                "Viasat Nature-History HD", "Viasat Sport", "Discovery Channel", "Discovery Showacase HD",
                 "Перший Національний", "Інтер", "1+1", "ICTV", "Новий Канал"};
 
 
@@ -32,9 +32,10 @@ public class Channels_fragment extends Fragment {
         int a = names.length;
 
         for (int i = 0; i < a; i++) {
-            mItems.add(new ListViewItem(resources.getDrawable(R.drawable.ic_drawer), Parser.channel.get(i)));
+            Channels.setChannelsLogo();
+            mItems.add(new ListViewItem(resources.getDrawable(Channels.channelsLogo.get(i)), names[i]));
         }
-        lvMain.setAdapter(new ListViewAdapter(getActivity(), mItems));
+        lvMain.setAdapter(new ListViewAdapterChannels(getActivity(), mItems));
         return rootView;
     }
 }

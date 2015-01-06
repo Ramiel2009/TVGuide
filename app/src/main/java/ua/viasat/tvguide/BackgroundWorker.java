@@ -22,10 +22,10 @@ public class BackgroundWorker extends AsyncTask<Void, Void, Void> {
 
     @Override
     public void onPreExecute() {
+        if (MainActivity.launch==true){
         pb.setVisibility(View.VISIBLE);
-        MainActivity.actionBar.hide();
-    }
-
+        MainActivity.actionBar.hide();}
+        }
     @Override
     protected Void doInBackground(Void... params) {
         try {
@@ -35,13 +35,12 @@ public class BackgroundWorker extends AsyncTask<Void, Void, Void> {
         }
         return null;
     }
-
     @Override
     public void onPostExecute(Void result) {
         pb.setVisibility(View.GONE);
-        System.out.println("Done");
         Fragment objFragment = new Content_fragment();
         fm.beginTransaction().replace(R.id.container, objFragment).addToBackStack("Content").commit();
         MainActivity.actionBar.show();
+        MainActivity.launch=false;
     }
 }

@@ -3,7 +3,6 @@ package ua.viasat.tvguide;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -16,21 +15,19 @@ public class MainActivity extends ActionBarActivity
 
     private FragmentManager fragmentManager = this.getSupportFragmentManager();
     public static ActionBar actionBar;
-    private ActionBarDrawerToggle mDrawerToggle;
+    public static boolean launch = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         System.out.println("Connection: " + NetConnection.checkConnection(this));
-
         restoreActionBar();
         NavigationDrawerFragment mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-
         }
 
     @Override

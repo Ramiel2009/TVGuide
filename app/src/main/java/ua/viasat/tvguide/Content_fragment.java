@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +38,7 @@ public class Content_fragment extends Fragment {
         mItems = new ArrayList<>();
         Resources resources = getResources();
         for (int a = 0; a < Parser.title.size(); a++) {
-            mItems.add(new ListViewItemContent(resources.getDrawable(R.drawable.ic_drawer),
+            mItems.add(new ListViewItemContent(resources.getDrawable(R.drawable.globe),
                     Parser.title.get(a), Parser.time.get(a), Parser.channel.get(a)));
         }
         lvMain1.setAdapter(new ListViewAdapterContent(getActivity().getBaseContext(), mItems));
@@ -57,7 +56,6 @@ public class Content_fragment extends Fragment {
             }
         });
 
-
         //ScrollRefreshLayout
         final SwipeRefreshLayout  refreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -66,9 +64,9 @@ public class Content_fragment extends Fragment {
                 refreshLayout.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        MainActivity.launch=false;
                         BackgroundWorker dRequest = new BackgroundWorker(rootView, fm);
                         dRequest.execute();
-                        Toast.makeText(rootView.getContext(), "Refreshed", Toast.LENGTH_LONG).show();
                         refreshLayout.setRefreshing(false);
                     }
                 }, 1000);

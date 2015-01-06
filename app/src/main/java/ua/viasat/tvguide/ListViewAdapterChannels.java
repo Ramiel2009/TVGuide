@@ -13,9 +13,9 @@ import java.util.List;
 /**
  * Created by Maxim on 03.01.2015.
  */
-public class ListViewAdapter extends ArrayAdapter<ListViewItem> {
+public class ListViewAdapterChannels extends ArrayAdapter<ListViewItem> {
 
-    public ListViewAdapter(Context context, List<ListViewItem> items) {
+    public ListViewAdapterChannels(Context context, List<ListViewItem> items) {
         super(context, R.layout.channels_list, items);
     }
 
