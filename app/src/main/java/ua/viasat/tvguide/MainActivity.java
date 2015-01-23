@@ -37,12 +37,15 @@ public class MainActivity extends ActionBarActivity
             case 0:
                 objFragment = new Content_fragment();
                 Content_fragment.flagRefreshing = false;
+
                 break;
             case 1:
                 objFragment = new Channels_fragment();
+                actionBar.setTitle("Channels");
                 break;
             case 2:
                 objFragment = new Grid_fragment();
+                actionBar.setTitle("Grid");
                 break;
         }
         fragmentManager.beginTransaction().replace(R.id.container, objFragment).commit();
