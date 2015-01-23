@@ -14,7 +14,6 @@ import java.util.List;
  */
 
     public class ListViewAdapterSchedule extends ArrayAdapter<ListViewSchedule> {
-
         public ListViewAdapterSchedule(Context context, List<ListViewSchedule> items) {
             super(context, R.layout.schedule_list, items);
         }
@@ -32,6 +31,7 @@ import java.util.List;
                 viewHolder = new ViewHolder();
                 viewHolder.tvTimeS = (TextView) convertView.findViewById(R.id.tvTimeS);
                 viewHolder.tvNameS = (TextView) convertView.findViewById(R.id.tvNameS);
+
                 convertView.setTag(viewHolder);
             } else {
                 // recycle the already inflated view
@@ -40,9 +40,15 @@ import java.util.List;
 
             // update the item view
             ListViewSchedule item = getItem(position);
-            viewHolder.tvTimeS.setText(item.time);
-            viewHolder.tvNameS.setText(item.name);
-
+                System.out.println(position);
+           // if(position==ChannelScheduleActivity.mark) {
+                viewHolder.tvTimeS.setText("\n"+ item.time+"   ");
+                viewHolder.tvNameS.setText("\n"+item.name);
+           /* }
+            else{
+            viewHolder.tvTimeS.setText("\n"+ item.time+"   ");
+            viewHolder.tvNameS.setText("\n NOW"+item.name);
+            }*/
             return convertView;
         }
 
