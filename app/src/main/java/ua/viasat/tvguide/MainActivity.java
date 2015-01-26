@@ -57,5 +57,3 @@ public class MainActivity extends ActionBarActivity
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#225180")));
     }
 }
-
-

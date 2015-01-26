@@ -40,15 +40,14 @@ import java.util.List;
 
             // update the item view
             ListViewSchedule item = getItem(position);
-                System.out.println(position);
-           // if(position==ChannelScheduleActivity.mark) {
+            if(position==(ChannelScheduleActivity.mark-1)) {        // current event
                 viewHolder.tvTimeS.setText("\n"+ item.time+"   ");
-                viewHolder.tvNameS.setText("\n"+item.name);
-           /* }
+                viewHolder.tvNameS.setText("\n LIVE!  "+item.name);
+            }
             else{
             viewHolder.tvTimeS.setText("\n"+ item.time+"   ");
-            viewHolder.tvNameS.setText("\n NOW"+item.name);
-            }*/
+            viewHolder.tvNameS.setText("\n"+item.name);
+            }
             return convertView;
         }
 

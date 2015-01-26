@@ -109,9 +109,6 @@ public class ChannelScheduleActivity extends ActionBarActivity {
                 System.out.println("Current Date: "+curDate+" PervDate: "+pervEvTime+" nextDate: "+nextEvTime);
                 check=true;
             }
-
-
-
             // Outputs -1 as date1 is before date2
             // Outputs 1 as date1 is after date2
             // Outputs 0 as the dates are now equal
