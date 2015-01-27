@@ -1,6 +1,7 @@
 package ua.viasat.tvguide;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,11 @@ public class ListViewAdapterChannels extends ArrayAdapter<ListViewItem> {
             // initialize the view holder
             viewHolder = new ViewHolder();
             viewHolder.ivIcon = (ImageView) convertView.findViewById(R.id.ivIcon);
+            viewHolder.tvTimeChannels = (TextView)convertView.findViewById(R.id.tvTimeChannels);
             viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
+
+            viewHolder.tvTimeNext = (TextView)convertView.findViewById(R.id.tvTimeNext);
+            viewHolder.tvTitleNext = (TextView) convertView.findViewById(R.id.tvTitleNext);
             convertView.setTag(viewHolder);
         } else {
             // recycle the already inflated view
@@ -40,20 +45,30 @@ public class ListViewAdapterChannels extends ArrayAdapter<ListViewItem> {
 
         // update the item view
         ListViewItem item = getItem(position);
+        //Live events
         viewHolder.ivIcon.setImageDrawable(item.icon);
-        viewHolder.tvTitle.setText(item.title);
+        viewHolder.tvTimeChannels.setText("  " + item.time);
+        viewHolder.tvTimeChannels.setTypeface(null, Typeface.BOLD);
+        viewHolder.tvTitle.setText("  : " + item.title);
+        viewHolder.tvTitle.setTypeface(null, Typeface.BOLD);
+        //next events
 
+        viewHolder.tvTimeNext.setText("  " + item.nTime);
+        viewHolder.tvTimeNext.setTypeface(null, Typeface.NORMAL);
+        viewHolder.tvTitleNext.setText("  : " + item.nTitle);
+        viewHolder.tvTitleNext.setTypeface(null, Typeface.NORMAL);
         return convertView;
     }
-
     /**
      * The view holder design pattern prevents using findViewById()
      * repeatedly in the getView() method of the adapter.
      *
-
      */
     private static class ViewHolder {
         ImageView ivIcon;
+        TextView tvTimeChannels;
         TextView tvTitle;
+        TextView tvTimeNext;
+        TextView tvTitleNext;
     }
 }

@@ -1,6 +1,7 @@
 package ua.viasat.tvguide;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,15 +43,16 @@ import java.util.List;
             ListViewSchedule item = getItem(position);
             if(position==(ChannelScheduleActivity.mark-1)) {        // current event
                 viewHolder.tvTimeS.setText("\n"+ item.time+"   ");
-                viewHolder.tvNameS.setText("\n LIVE!  "+item.name);
+                viewHolder.tvNameS.setText("\n LIVE!  " + item.name);
+                viewHolder.tvNameS.setTypeface(null, Typeface.BOLD);
             }
             else{
             viewHolder.tvTimeS.setText("\n"+ item.time+"   ");
             viewHolder.tvNameS.setText("\n"+item.name);
+            viewHolder.tvNameS.setTypeface(null, Typeface.NORMAL);
             }
             return convertView;
         }
-
         /**
          * The view holder design pattern prevents using findViewById()
          * repeatedly in the getView() method of the adapter.

@@ -30,6 +30,7 @@ public class BackgroundWorker extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... params) {
         try {
             Parser.refreshItems();
+            ScheduleParser.Parse();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -17,11 +17,8 @@ import java.util.List;
 public class Channels_fragment extends Fragment implements AdapterView.OnItemClickListener {
     View rootView;
     private List<ListViewItem> mItems;
+    public String Url;
     static int selectedChannel;
-    static String[] names = {"TV1000", "TV1000 Русское Кино", "TV1000 Action", "TV1000 Premium HD",
-            "TV1000 Megahit HD", "Comedy HD", "Viasat History", "Viasat Explore", "Viasat Nature", "Viasat History",
-            "Viasat Nature-History HD", "Viasat Sport", "Discovery Channel", "Discovery Showacase HD",
-            "Перший Національний", "Інтер", "1+1", "ICTV", "Новий Канал"};
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container,
@@ -32,11 +29,13 @@ public class Channels_fragment extends Fragment implements AdapterView.OnItemCli
 
         mItems = new ArrayList<ListViewItem>();
         Resources resources = getResources();
-        int a = names.length;
+        int a = Channels.names.length;
 
         for (int i = 0; i < a; i++) {
             Channels.setChannelsLogo();
-            mItems.add(new ListViewItem(resources.getDrawable(Channels.channelsLogo.get(i)), names[i]));
+            mItems.add(new ListViewItem(resources.getDrawable(Channels.channelsLogo.get(i)),
+                    ScheduleParser.liveEventsTime[i], ScheduleParser.liveEvents[i],
+                    ScheduleParser.nextEventsTime[i], ScheduleParser.nextEvents[i]));
         }
         lvMain.setAdapter(new ListViewAdapterChannels(getActivity(), mItems));
         return rootView;

@@ -10,6 +10,15 @@ public class Channels {
     public static String ChannelUrl;
     public static ArrayList <Integer> channelsLogo = new ArrayList<Integer>();
 
+
+    public static String[] names = {
+            "TV1000", "TV1000 Русское Кино", "TV1000 Action",
+            "TV1000 Premium HD","TV1000 Megahit HD", "Comedy HD",
+            "Viasat History", "Viasat Explore", "Viasat Nature","Viasat Nature-History HD",
+            "Viasat Sport", "Discovery Channel", "Discovery Showacase HD",
+            "Перший Національний", "Інтер", "1+1", "ICTV", "Новий Канал"};
+
+
     public static void setChannelsLogo() {
         channelsLogo.add(R.drawable.tv1000);
         channelsLogo.add(R.drawable.tv1000rus);
@@ -91,4 +100,24 @@ public class Channels {
         }
         return ChannelUrl;
     }
+    public static String  urlList[] =  {
+            "http://ru.viasat.ua/channels/1",
+            "http://ru.viasat.ua/channels/2",
+            "http://ru.viasat.ua/channels/3",
+            "http://ru.viasat.ua/channels/246",
+            "http://ru.viasat.ua/channels/242",
+            "http://ru.viasat.ua/channels/244",
+            "http://ru.viasat.ua/channels/17",
+            "http://ru.viasat.ua/channels/18",
+            "http://ru.viasat.ua/channels/120",
+            "http://ru.viasat.ua/channels/203",
+            "http://ru.viasat.ua/channels/322",
+            "http://ru.viasat.ua/channels/19",
+            "http://ru.viasat.ua/channels/258",
+            "http://ru.viasat.ua/channels/68",
+            "http://ru.viasat.ua/channels/305",
+            "http://ru.viasat.ua/channels/64",
+            "http://ru.viasat.ua/channels/66",
+            "http://ru.viasat.ua/channels/65",
+    };
 }

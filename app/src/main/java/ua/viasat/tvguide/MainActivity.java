@@ -48,11 +48,11 @@ public class MainActivity extends ActionBarActivity
                 actionBar.setTitle("Grid");
                 break;
         }
-        fragmentManager.beginTransaction().replace(R.id.container, objFragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.container, objFragment).addToBackStack(null)
+                .commit();
     }
     public void restoreActionBar() {
         actionBar = getSupportActionBar();
-        //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#225180")));
     }

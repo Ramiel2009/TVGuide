@@ -48,7 +48,7 @@ public class ChannelScheduleActivity extends ActionBarActivity {
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#225180")));
-        actionBar.setTitle(Channels_fragment.names[Channels_fragment.selectedChannel]);
+        actionBar.setTitle(Channels.names[Channels_fragment.selectedChannel]);
     }
 
     public void Parse () throws IOException{
@@ -65,8 +65,7 @@ public class ChannelScheduleActivity extends ActionBarActivity {
                         e.getElementsByClass("ch-title").text()));//adding text to collection
             if (check == true){
                 mark=i-1;
-                System.out.println(mark);
-                System.out.println("here!");
+                System.out.println(mark+" Live!");
                 check=false;
             }
         }

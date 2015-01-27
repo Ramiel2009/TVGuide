@@ -5,11 +5,12 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:gravity="center_vertical"
-    android:padding="5dp" >
+    android:padding="5dp">
 
     <!-- the innner view - provides the white rectangle -->
     <RelativeLayout android:layout_width="fill_parent"
-        android:layout_height="50dp" >
+        android:layout_height="50dp"
+        android:layout_marginRight="5dp">
 
         <!-- the icon view -->
         <ImageView android:id="@+id/ivIcon"
@@ -26,16 +27,38 @@
             android:layout_toRightOf="@id/ivIcon"
             android:layout_centerVertical="true" >
 
+            <TextView android:id="@+id/tvTimeChannels"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                android:text="  00:00" />
+
+            <TextView android:id="@+id/tvTimeNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvTimeChannels"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                android:text="  00:00" />
+
             <!-- the title view -->
             <TextView android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@android:style/TextAppearance.Medium"
-                android:text="Some Channels Name" />
+                android:textAppearance="@android:style/TextAppearance.Small"
+                android:singleLine="true"
+                android:layout_toRightOf="@id/tvTimeChannels"
+                android:text="  NOW:  Some event name" />
+
+            <TextView android:id="@+id/tvTitleNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvTitle"
+                android:layout_toRightOf="@id/tvTimeNext"
+                android:singleLine="true"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                android:text="  NEXT: Some another event" />
 
             <!-- the description view -->
         </RelativeLayout>
-
     </RelativeLayout>
-
 </RelativeLayout>
