@@ -41,7 +41,7 @@ import java.util.List;
 
             // update the item view
             ListViewSchedule item = getItem(position);
-            if(position==(ChannelScheduleActivity.mark-1)) {        // current event
+            if(position==(ChannelScheduleFragment.mark-1)) {        // current event
                 viewHolder.tvTimeS.setText("\n"+ item.time+"   ");
                 viewHolder.tvNameS.setText("\n LIVE!  " + item.name);
                 viewHolder.tvNameS.setTypeface(null, Typeface.BOLD);

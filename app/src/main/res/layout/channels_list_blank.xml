@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- the parent view - provides the gray listfragment background color -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_gravity="center"
+    android:gravity="center_vertical">
+
+    <!-- the innner view - provides the white rectangle -->
+    <RelativeLayout android:layout_width="fill_parent"
+        android:layout_height="0dp">
+
+        <!-- the icon view -->
+        <ImageView android:id="@+id/ivIcon"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentLeft="true"
+           />
+
+        <!-- the container view for the title and description -->
+        <RelativeLayout android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_toRightOf="@id/ivIcon"
+            android:layout_centerVertical="true" >
+
+            <TextView android:id="@+id/tvTimeChannels"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView android:id="@+id/tvTimeNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvTimeChannels"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                />
+
+            <!-- the title view -->
+            <TextView android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                android:singleLine="true"
+                android:layout_toRightOf="@id/tvTimeChannels"
+                 />
+
+            <TextView android:id="@+id/tvTitleNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvTitle"
+                android:layout_toRightOf="@id/tvTimeNext"
+                android:singleLine="true"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                />
+
+            <!-- the description view -->
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

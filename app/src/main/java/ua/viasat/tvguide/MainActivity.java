@@ -44,11 +44,12 @@ public class MainActivity extends ActionBarActivity
                 actionBar.setTitle("Channels");
                 break;
             case 2:
-                objFragment = new Grid_fragment();
-                actionBar.setTitle("Grid");
+                objFragment = new SlidingScheduleFragment();
+                actionBar.setTitle("Test Menu");
                 break;
         }
-        fragmentManager.beginTransaction().replace(R.id.container, objFragment).addToBackStack(null)
+        fragmentManager.popBackStack();
+        fragmentManager.beginTransaction().replace(R.id.container, objFragment)
                 .commit();
     }
     public void restoreActionBar() {

@@ -4,7 +4,7 @@
     <string name="app_name">TVGuide</string>
     <string name="title_section1">Content</string>
     <string name="title_section2">Channels</string>
-    <string name="title_section3">Grid</string>
+    <string name="title_section3">Test Menu</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
@@ -14,5 +14,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="TextColor">Medium Text</string>
     <string name="title_activity_channel_schedule">ChannelScheduleActivity</string>
+    <string name="page">Page:</string>
 
 </resources>

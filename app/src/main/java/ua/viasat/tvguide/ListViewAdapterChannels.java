@@ -20,14 +20,21 @@ public class ListViewAdapterChannels extends ArrayAdapter<ListViewItem> {
         super(context, R.layout.channels_list, items);
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
+        // update the item view
+        ListViewItem item = getItem(position);
 
         if(convertView == null) {
             // inflate the GridView item layout
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.channels_list, parent, false);
+            if(item.title ==null || item.time==null){
+                convertView = inflater.inflate(R.layout.channels_list_blank, parent, false);
+            }
+            else
+                convertView = inflater.inflate(R.layout.channels_list, parent, false);
 
             // initialize the view holder
             viewHolder = new ViewHolder();
@@ -43,8 +50,7 @@ public class ListViewAdapterChannels extends ArrayAdapter<ListViewItem> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        // update the item view
-        ListViewItem item = getItem(position);
+
         //Live events
         viewHolder.ivIcon.setImageDrawable(item.icon);
         viewHolder.tvTimeChannels.setText("  " + item.time);
@@ -52,7 +58,6 @@ public class ListViewAdapterChannels extends ArrayAdapter<ListViewItem> {
         viewHolder.tvTitle.setText("  : " + item.title);
         viewHolder.tvTitle.setTypeface(null, Typeface.BOLD);
         //next events
-
         viewHolder.tvTimeNext.setText("  " + item.nTime);
         viewHolder.tvTimeNext.setTypeface(null, Typeface.NORMAL);
         viewHolder.tvTitleNext.setText("  : " + item.nTitle);

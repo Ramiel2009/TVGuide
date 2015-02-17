@@ -34,7 +34,7 @@
             android:name=".ListFragment"
             android:label="@string/title_activity_list_fragment" />
         <activity
-            android:name=".ChannelScheduleActivity"
+            android:name=".ChannelScheduleFragment"
             android:label="@string/title_activity_channel_schedule" >
         </activity>
     </application>

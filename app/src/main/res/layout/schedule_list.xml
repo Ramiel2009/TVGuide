@@ -6,7 +6,6 @@
     android:layout_gravity="center"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:padding="5dp" >
-
     <!-- the innner view - provides the white rectangle -->
     <RelativeLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"

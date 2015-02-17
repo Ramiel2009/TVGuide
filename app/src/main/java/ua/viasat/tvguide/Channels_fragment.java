@@ -1,7 +1,6 @@
 package ua.viasat.tvguide;
 
 
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -44,7 +43,12 @@ public class Channels_fragment extends Fragment implements AdapterView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         selectedChannel = position;
-        Intent intent = new Intent (this.getActivity(), ChannelScheduleActivity.class);
-        startActivity(intent);
+        android.support.v4.app.FragmentManager fm = Channels_fragment.this.getActivity().getSupportFragmentManager();
+        Fragment objFragment = new ChannelScheduleFragment();
+
+        fm.popBackStack();
+        fm.beginTransaction().replace(R.id.container, objFragment).addToBackStack(null)
+                .commit();
+
     }
 }
